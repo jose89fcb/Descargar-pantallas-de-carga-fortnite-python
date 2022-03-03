@@ -1,0 +1,17 @@
+import requests
+import os
+
+
+nombre = input("Escribe el nombre de la pantalla de carga: ")
+response = requests.get("https://jose89fcb.es/PantallaDeCargaFortnite/jsonfortnite/PantallaFN.php?nombre=" +nombre)
+pantalla = response.json()['Imagen']
+    
+os.makedirs(f'{nombre}', exist_ok=True)
+os.chdir(f'{nombre}')
+url_imagen = f"{pantalla}"
+nombre_local_imagen = f"{nombre}.png"
+    
+imagen = requests.get(url_imagen).content
+with open(nombre_local_imagen, 'wb') as handler:
+    handler.write(imagen)
+    
