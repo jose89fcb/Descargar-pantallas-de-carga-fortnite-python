@@ -1,10 +1,16 @@
 import requests
 import os
 
-
+os.system("cls")
 nombre = input("Escribe el nombre de la pantalla de carga: ")
+os.system("cls")
 response = requests.get("https://jose89fcb.es/PantallaDeCargaFortnite/jsonfortnite/PantallaFN.php?nombre=" +nombre)
 pantalla = response.json()['Imagen']
+####
+nombre = response.json()['Nombre']
+descripcion = response.json()['Descripción']
+rareza = response.json()['Rareza']
+
     
 os.makedirs(f'{nombre}', exist_ok=True)
 os.chdir(f'{nombre}')
@@ -15,3 +21,8 @@ imagen = requests.get(url_imagen).content
 with open(nombre_local_imagen, 'wb') as handler:
     handler.write(imagen)
     
+    
+
+    print(f"información \n\nNombre: {nombre}\nDescripción: {descripcion}\nRareza: {rareza}\nImagen: {pantalla}")
+
+ 
